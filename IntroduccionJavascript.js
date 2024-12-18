@@ -19,6 +19,12 @@ Mostrar las calificaciones, clasificaciones y estadísticas de los estudiantes.
 Nota: Utilizar únicamente las sentencias vistas en clases
 */
 
+let mejorEstudiante = null;
+let peorEstudiante = null;
+let mejorPromedio = 0;
+let peorPromedio = 1000;
+
+
 estudiantes=[
     {nombre: "Maria",
         calificacion:[14,13,20,15,20]
@@ -61,6 +67,17 @@ estudiantes=[
         let maximo = estudiante.calificacion.reduce((acumulador, num) => (num>acumulador?num:acumulador));
         let sumatoria = estudiante.calificacion.reduce((acumulador, num) => acumulador + num);
         let promedio = sumatoria / estudiante.calificacion.length;
+
+        if (promedio > mejorPromedio) {
+            mejorPromedio = promedio;
+            mejorEstudiante = estudiante.nombre;
+        }
+        if (promedio < peorPromedio) {
+            peorPromedio = promedio;
+            peorEstudiante = estudiante.nombre;
+        }
+
+
         console.log("---------------------------------------------")
         if (promedio >= 16 ) {
             console.log(estudiante.nombre + ":");
@@ -86,6 +103,12 @@ estudiantes=[
             console.log("Promedio " + promedio);
             console.log("Calificacion más alta " + maximo);
             console.log("Calificacion mínima " + minimo);
-        }
-        
+        }    
+    
     }
+
+console.log("=============================================");
+console.log("Mejor promedio "+mejorEstudiante + " con un promedio de " + mejorPromedio);
+console.log("=============================================");
+console.log("Peor promedio "+peorEstudiante + " con un promedio de " + peorPromedio);
+
